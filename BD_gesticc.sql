@@ -3,11 +3,13 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06-05-2014 a les 20:18:14
+-- Generation Time: 07-05-2014 a les 17:26:36
 -- Versió del servidor: 5.6.16
 -- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -142,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `contacte` (
 --
 -- Estructura de la taula `dades_personals_empresa`
 --
--- Creació: 06-05-2014 a les 17:28:59
+-- Creació: 07-05-2014 a les 15:25:06
 --
 
 DROP TABLE IF EXISTS `dades_personals_empresa`;
@@ -150,20 +152,16 @@ CREATE TABLE IF NOT EXISTS `dades_personals_empresa` (
   `dem_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
   `dem_nom` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom empresa personal',
   `dem_nif` varchar(9) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'NIF empresa personal',
-  `dem_adr_id` int(12) NOT NULL COMMENT 'Adreca empresa',
-  `dem_con_id` int(12) NOT NULL COMMENT 'Contacte empresa',
-  PRIMARY KEY (`dem_id`),
-  KEY `dem_adr_id` (`dem_adr_id`),
-  KEY `dem_con_id` (`dem_con_id`)
+  `dem_adreca` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Adreca empresa',
+  `dem_codi_postal` varchar(8) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Codi postal empresa',
+  `dem_poblacio` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Poblacio empresa',
+  `dem_provincia` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Provincia empresa',
+  `dem_pais` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Pais empresa',
+  `dem_mail` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Mail empresa',
+  `dem_telefon` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Telefon empresa',
+  `dem_fax` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Fax empresa',
+  PRIMARY KEY (`dem_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula dades personals empresa' AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `dades_personals_empresa`:
---   `dem_con_id`
---       `contacte` -> `con_id`
---   `dem_adr_id`
---       `adreca` -> `adr_id`
---
 
 -- --------------------------------------------------------
 
@@ -493,7 +491,7 @@ CREATE TABLE IF NOT EXISTS `subfamilia` (
 --
 -- Estructura de la taula `subjecte`
 --
--- Creació: 06-05-2014 a les 17:18:10
+-- Creació: 07-05-2014 a les 13:35:46
 --
 
 DROP TABLE IF EXISTS `subjecte`;
@@ -502,6 +500,7 @@ CREATE TABLE IF NOT EXISTS `subjecte` (
   `sub_nif` varchar(9) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Numero d''''identificacio de la persona o empresa',
   `sub_nom` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom de la persona o empresa',
   `sub_data_baixa_mailing` date DEFAULT NULL COMMENT 'Data en que s''ha donat de baixa el mailing postal',
+  `sub_data_baixa_general` date NOT NULL COMMENT 'Data de baixa general',
   PRIMARY KEY (`sub_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
@@ -711,13 +710,6 @@ ALTER TABLE `adreca_contacte`
   ADD CONSTRAINT `adreca_contacte_adr_id_fk` FOREIGN KEY (`aco_adr_id`) REFERENCES `adreca` (`adr_id`);
 
 --
--- Restriccions per la taula `dades_personals_empresa`
---
-ALTER TABLE `dades_personals_empresa`
-  ADD CONSTRAINT `dades_personals_empresa_con_id_fk` FOREIGN KEY (`dem_con_id`) REFERENCES `contacte` (`con_id`),
-  ADD CONSTRAINT `dades_personals_empresa_adr_id_fk` FOREIGN KEY (`dem_adr_id`) REFERENCES `adreca` (`adr_id`);
-
---
 -- Restriccions per la taula `empresa`
 --
 ALTER TABLE `empresa`
@@ -814,6 +806,7 @@ ALTER TABLE `usuari_permis`
 ALTER TABLE `usuari_rol`
   ADD CONSTRAINT `usuari_rol_rol_id_fk` FOREIGN KEY (`uro_rol_id`) REFERENCES `rol` (`rol_id`),
   ADD CONSTRAINT `usuari_rol_usu_id_fk` FOREIGN KEY (`uro_usu_id`) REFERENCES `usuari` (`usu_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
