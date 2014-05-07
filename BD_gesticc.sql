@@ -3,13 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-05-2014 a les 16:32:29
+-- Generation Time: 06-05-2014 a les 20:18:14
 -- Versió del servidor: 5.6.16
 -- PHP Version: 5.5.11
 
---
--- exportació inicial sense dades 27 taules
---
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -30,30 +27,48 @@ USE `gesticc`;
 --
 -- Estructura de la taula `adreca`
 --
--- Creació: 30-04-2014 a les 15:14:29
+-- Creació: 06-05-2014 a les 17:17:45
 --
 
 DROP TABLE IF EXISTS `adreca`;
 CREATE TABLE IF NOT EXISTS `adreca` (
   `adr_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
   `adr_adreca` varchar(512) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom del carrer, poligon, placa... aixi com el numero associat',
-  `adr_sub_id` int(12) NOT NULL COMMENT 'Subjecte al que pertany l''adreca',
   `adr_pob_id` int(12) NOT NULL COMMENT 'Poblacio',
-  `adr_con_id_defecte` int(12) NOT NULL COMMENT 'Contacte per defecte de l''adreca',
   PRIMARY KEY (`adr_id`),
-  KEY `adr_sub_id` (`adr_sub_id`),
-  KEY `adr_pob_id` (`adr_pob_id`),
-  KEY `adr_con_id_defecte` (`adr_con_id_defecte`)
+  KEY `adr_pob_id` (`adr_pob_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula d''adreces' AUTO_INCREMENT=1 ;
 
 --
 -- RELACIONS DE LA TAULA `adreca`:
---   `adr_con_id_defecte`
---       `contacte` -> `con_id`
 --   `adr_pob_id`
 --       `poblacio` -> `pob_id`
---   `adr_sub_id`
---       `subjecte` -> `sub_id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `adreca_contacte`
+--
+-- Creació: 06-05-2014 a les 17:22:38
+--
+
+DROP TABLE IF EXISTS `adreca_contacte`;
+CREATE TABLE IF NOT EXISTS `adreca_contacte` (
+  `aco_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
+  `aco_adr_id` int(12) NOT NULL COMMENT 'Clau identificadora adreca',
+  `aco_con_id` int(12) NOT NULL COMMENT 'Clau identificadora contacte',
+  PRIMARY KEY (`aco_id`),
+  KEY `aco_adr_id` (`aco_adr_id`),
+  KEY `aco_con_id` (`aco_con_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+--
+-- RELACIONS DE LA TAULA `adreca_contacte`:
+--   `aco_con_id`
+--       `contacte` -> `con_id`
+--   `aco_adr_id`
+--       `adreca` -> `adr_id`
 --
 
 -- --------------------------------------------------------
@@ -108,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `comentari` (
 --
 -- Estructura de la taula `contacte`
 --
--- Creació: 30-04-2014 a les 15:30:35
+-- Creació: 06-05-2014 a les 17:21:17
 --
 
 DROP TABLE IF EXISTS `contacte`;
@@ -119,34 +134,36 @@ CREATE TABLE IF NOT EXISTS `contacte` (
   `con_mobil` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Numero de mobil',
   `con_fax` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Numero de fax',
   `con_email` varchar(128) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Adreca electronica',
-  `con_adr_id` int(12) NOT NULL COMMENT 'Adreca associada al contacte',
-  PRIMARY KEY (`con_id`),
-  KEY `con_adr_id` (`con_adr_id`)
+  PRIMARY KEY (`con_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula de contactes' AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `contacte`:
---   `con_adr_id`
---       `adreca` -> `adr_id`
---
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de la taula `dades_personals_empresa`
 --
--- Creació: 29-04-2014 a les 18:42:51
+-- Creació: 06-05-2014 a les 17:28:59
 --
 
 DROP TABLE IF EXISTS `dades_personals_empresa`;
 CREATE TABLE IF NOT EXISTS `dades_personals_empresa` (
   `dem_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
-  `dem_nom` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom empresa personal',
-  `dem_nif` varchar(9) COLLATE utf8_spanish_ci NOT NULL COMMENT 'NIF empresa personal',
+  `dem_nom` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom empresa personal',
+  `dem_nif` varchar(9) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'NIF empresa personal',
   `dem_adr_id` int(12) NOT NULL COMMENT 'Adreca empresa',
   `dem_con_id` int(12) NOT NULL COMMENT 'Contacte empresa',
-  PRIMARY KEY (`dem_id`)
+  PRIMARY KEY (`dem_id`),
+  KEY `dem_adr_id` (`dem_adr_id`),
+  KEY `dem_con_id` (`dem_con_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula dades personals empresa' AUTO_INCREMENT=1 ;
+
+--
+-- RELACIONS DE LA TAULA `dades_personals_empresa`:
+--   `dem_con_id`
+--       `contacte` -> `con_id`
+--   `dem_adr_id`
+--       `adreca` -> `adr_id`
+--
 
 -- --------------------------------------------------------
 
@@ -179,53 +196,36 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `enviament_email`
---
--- Creació: 30-04-2014 a les 15:35:26
---
-
-DROP TABLE IF EXISTS `enviament_email`;
-CREATE TABLE IF NOT EXISTS `enviament_email` (
-  `ene_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
-  `ene_con_id` int(12) NOT NULL COMMENT 'Contacte a qui es dirigeix l''enviament',
-  `ene_tra_id` int(12) NOT NULL COMMENT 'Tramesa a la que pertany l''''enviament',
-  `ene_tem_id` int(12) NOT NULL COMMENT 'Email enviat',
-  PRIMARY KEY (`ene_id`),
-  KEY `ene_con_id` (`ene_con_id`),
-  KEY `ene_tra_id` (`ene_tra_id`),
-  KEY `ene_tem_id` (`ene_tem_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula d''enviaments per correu electronic.' AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `enviament_email`:
---   `ene_con_id`
---       `contacte` -> `con_id`
---   `ene_tem_id`
---       `tramesa_email` -> `tem_id`
---   `ene_tra_id`
---       `tramesa` -> `tra_id`
---
-
--- --------------------------------------------------------
-
---
 -- Estructura de la taula `factura`
 --
--- Creació: 30-04-2014 a les 15:55:45
+-- Creació: 06-05-2014 a les 17:27:12
 --
 
 DROP TABLE IF EXISTS `factura`;
 CREATE TABLE IF NOT EXISTS `factura` (
   `fac_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
   `fac_data` date NOT NULL COMMENT 'Data factura',
-  `fac_cli_id` int(12) NOT NULL COMMENT 'Client al qual pertany la factura',
-  `fac_dem` int(12) NOT NULL COMMENT 'Dades personals de l''empresa',
+  `fac_sub_id` int(12) NOT NULL COMMENT 'Subjecte al qual pertany la factura',
+  `fac_dem_id` int(12) NOT NULL COMMENT 'Dades personals de l''empresa',
   `fac_preu_total` decimal(12,2) NOT NULL COMMENT 'Preu total de la factura',
   `fac_pagat` tinyint(1) NOT NULL COMMENT 'Boolea per saber si esta pagada o no, si no ho esta es podra modificar la factura',
+  `fac_modificable` tinyint(1) NOT NULL COMMENT 'Factura modificable o no',
+  `fac_tfa_id` int(12) NOT NULL COMMENT 'Tipus de factura que es',
   PRIMARY KEY (`fac_id`),
-  KEY `fac_cli_id` (`fac_cli_id`),
-  KEY `fac_dem` (`fac_dem`)
+  KEY `fac_cli_id` (`fac_sub_id`),
+  KEY `fac_dem` (`fac_dem_id`),
+  KEY `fac_tfa_id` (`fac_tfa_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula factures' AUTO_INCREMENT=1 ;
+
+--
+-- RELACIONS DE LA TAULA `factura`:
+--   `fac_tfa_id`
+--       `tipus_factura` -> `tfa_id`
+--   `fac_dem_id`
+--       `dades_personals_empresa` -> `dem_id`
+--   `fac_sub_id`
+--       `subjecte` -> `sub_id`
+--
 
 -- --------------------------------------------------------
 
@@ -493,7 +493,7 @@ CREATE TABLE IF NOT EXISTS `subfamilia` (
 --
 -- Estructura de la taula `subjecte`
 --
--- Creació: 30-04-2014 a les 15:13:02
+-- Creació: 06-05-2014 a les 17:18:10
 --
 
 DROP TABLE IF EXISTS `subjecte`;
@@ -502,27 +502,83 @@ CREATE TABLE IF NOT EXISTS `subjecte` (
   `sub_nif` varchar(9) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Numero d''''identificacio de la persona o empresa',
   `sub_nom` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom de la persona o empresa',
   `sub_data_baixa_mailing` date DEFAULT NULL COMMENT 'Data en que s''ha donat de baixa el mailing postal',
-  `sub_adr_id_defecte` int(12) DEFAULT NULL COMMENT 'Adreca per defecte del subjecte',
-  `sub_cat_id` int(12) NOT NULL COMMENT 'Categoria a la que pertany el subjecte (proveidor, client...)',
-  PRIMARY KEY (`sub_id`),
-  KEY `sub_adr_id_defecte` (`sub_adr_id_defecte`),
-  KEY `sub_cat_id` (`sub_cat_id`)
+  PRIMARY KEY (`sub_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `subjecte_adreca`
+--
+-- Creació: 06-05-2014 a les 17:19:43
+--
+
+DROP TABLE IF EXISTS `subjecte_adreca`;
+CREATE TABLE IF NOT EXISTS `subjecte_adreca` (
+  `sad_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
+  `sad_sub_id` int(12) NOT NULL COMMENT 'Clau identificadora subjecte',
+  `sad_adr_id` int(12) NOT NULL COMMENT 'Clau identificadora adreca',
+  PRIMARY KEY (`sad_id`),
+  KEY `sad_sub_id` (`sad_sub_id`),
+  KEY `sad_adr_id` (`sad_adr_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 --
--- RELACIONS DE LA TAULA `subjecte`:
---   `sub_adr_id_defecte`
+-- RELACIONS DE LA TAULA `subjecte_adreca`:
+--   `sad_adr_id`
 --       `adreca` -> `adr_id`
---   `sub_cat_id`
---       `categoria` -> `cat_id`
+--   `sad_sub_id`
+--       `subjecte` -> `sub_id`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `subjecte_categoria`
+--
+-- Creació: 02-05-2014 a les 17:34:29
+--
+
+DROP TABLE IF EXISTS `subjecte_categoria`;
+CREATE TABLE IF NOT EXISTS `subjecte_categoria` (
+  `sbc_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primària',
+  `sbc_sub_id` int(12) NOT NULL COMMENT 'Identificador subjecte',
+  `sbc_cat_id` int(12) NOT NULL COMMENT 'Identificador categoria',
+  PRIMARY KEY (`sbc_id`),
+  KEY `sbc_sub_id` (`sbc_sub_id`,`sbc_cat_id`),
+  KEY `sbc_cat_id` (`sbc_cat_id`),
+  KEY `sbc_sub_id_2` (`sbc_sub_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula subjecte categoria' AUTO_INCREMENT=1 ;
+
+--
+-- RELACIONS DE LA TAULA `subjecte_categoria`:
+--   `sbc_cat_id`
+--       `categoria` -> `cat_id`
+--   `sbc_sub_id`
+--       `subjecte` -> `sub_id`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de la taula `tipus_factura`
+--
+-- Creació: 06-05-2014 a les 17:24:57
+--
+
+DROP TABLE IF EXISTS `tipus_factura`;
+CREATE TABLE IF NOT EXISTS `tipus_factura` (
+  `tfa_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
+  `tfa_descripcio` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Descripcio tipus de factura',
+  PRIMARY KEY (`tfa_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de la taula `tramesa`
 --
--- Creació: 30-04-2014 a les 15:44:10
+-- Creació: 06-05-2014 a les 17:42:30
 --
 
 DROP TABLE IF EXISTS `tramesa`;
@@ -531,6 +587,8 @@ CREATE TABLE IF NOT EXISTS `tramesa` (
   `tra_data` date DEFAULT NULL COMMENT 'Data en que s''ha creat la tramesa',
   `tra_titol` varchar(512) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Titol de la tramesa',
   `tra_cmt_id` int(12) DEFAULT NULL COMMENT 'Comentari',
+  `tra_assumpte` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Assumpte de la tramesa',
+  `tra_contingut` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contingut de la tramesa',
   PRIMARY KEY (`tra_id`),
   KEY `tra_cmt_id` (`tra_cmt_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula de trameses' AUTO_INCREMENT=1 ;
@@ -544,24 +602,26 @@ CREATE TABLE IF NOT EXISTS `tramesa` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `tramesa_email`
+-- Estructura de la taula `tramesa_contacte`
 --
--- Creació: 30-04-2014 a les 15:44:53
+-- Creació: 06-05-2014 a les 17:43:52
 --
 
-DROP TABLE IF EXISTS `tramesa_email`;
-CREATE TABLE IF NOT EXISTS `tramesa_email` (
-  `tem_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
-  `tem_assumpte` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Assumpte del correu electronic',
-  `tem_contingut` text COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contingut del correu electronic',
-  `tem_tra_id` int(11) NOT NULL COMMENT 'Tramesa a la que pertany el correu electronic',
-  PRIMARY KEY (`tem_id`),
-  KEY `tem_tra_id` (`tem_tra_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula amb trameses corresponents a correus electronics' AUTO_INCREMENT=1 ;
+DROP TABLE IF EXISTS `tramesa_contacte`;
+CREATE TABLE IF NOT EXISTS `tramesa_contacte` (
+  `tco_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
+  `tco_tra_id` int(12) NOT NULL COMMENT 'Clau identificadora tramesa',
+  `tco_con_id` int(12) NOT NULL COMMENT 'Clau identificadora contacte',
+  PRIMARY KEY (`tco_id`),
+  KEY `tco_tra_id` (`tco_tra_id`),
+  KEY `tco_con_id` (`tco_con_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 --
--- RELACIONS DE LA TAULA `tramesa_email`:
---   `tem_tra_id`
+-- RELACIONS DE LA TAULA `tramesa_contacte`:
+--   `tco_con_id`
+--       `contacte` -> `con_id`
+--   `tco_tra_id`
 --       `tramesa` -> `tra_id`
 --
 
@@ -641,15 +701,21 @@ CREATE TABLE IF NOT EXISTS `usuari_rol` (
 -- Restriccions per la taula `adreca`
 --
 ALTER TABLE `adreca`
-  ADD CONSTRAINT `adreca_con_id_fk` FOREIGN KEY (`adr_con_id_defecte`) REFERENCES `contacte` (`con_id`),
-  ADD CONSTRAINT `adreca_pob_id_fk` FOREIGN KEY (`adr_pob_id`) REFERENCES `poblacio` (`pob_id`),
-  ADD CONSTRAINT `adreca_sub_id_fk` FOREIGN KEY (`adr_sub_id`) REFERENCES `subjecte` (`sub_id`);
+  ADD CONSTRAINT `adreca_pob_id_fk` FOREIGN KEY (`adr_pob_id`) REFERENCES `poblacio` (`pob_id`);
 
 --
--- Restriccions per la taula `contacte`
+-- Restriccions per la taula `adreca_contacte`
 --
-ALTER TABLE `contacte`
-  ADD CONSTRAINT `contacte_adr_id_fk` FOREIGN KEY (`con_adr_id`) REFERENCES `adreca` (`adr_id`);
+ALTER TABLE `adreca_contacte`
+  ADD CONSTRAINT `adreca_contacte_con_id_fk` FOREIGN KEY (`aco_con_id`) REFERENCES `contacte` (`con_id`),
+  ADD CONSTRAINT `adreca_contacte_adr_id_fk` FOREIGN KEY (`aco_adr_id`) REFERENCES `adreca` (`adr_id`);
+
+--
+-- Restriccions per la taula `dades_personals_empresa`
+--
+ALTER TABLE `dades_personals_empresa`
+  ADD CONSTRAINT `dades_personals_empresa_con_id_fk` FOREIGN KEY (`dem_con_id`) REFERENCES `contacte` (`con_id`),
+  ADD CONSTRAINT `dades_personals_empresa_adr_id_fk` FOREIGN KEY (`dem_adr_id`) REFERENCES `adreca` (`adr_id`);
 
 --
 -- Restriccions per la taula `empresa`
@@ -659,12 +725,12 @@ ALTER TABLE `empresa`
   ADD CONSTRAINT `empresa_sub_id_fk` FOREIGN KEY (`emp_sub_id`) REFERENCES `subjecte` (`sub_id`);
 
 --
--- Restriccions per la taula `enviament_email`
+-- Restriccions per la taula `factura`
 --
-ALTER TABLE `enviament_email`
-  ADD CONSTRAINT `enviament_email_con_id_fk` FOREIGN KEY (`ene_con_id`) REFERENCES `contacte` (`con_id`),
-  ADD CONSTRAINT `enviament_email_tem_id_fk` FOREIGN KEY (`ene_tem_id`) REFERENCES `tramesa_email` (`tem_id`),
-  ADD CONSTRAINT `enviament_email_tra_id_fk` FOREIGN KEY (`ene_tra_id`) REFERENCES `tramesa` (`tra_id`);
+ALTER TABLE `factura`
+  ADD CONSTRAINT `factura_tfa_id_fk` FOREIGN KEY (`fac_tfa_id`) REFERENCES `tipus_factura` (`tfa_id`),
+  ADD CONSTRAINT `factura_dem_id_fk` FOREIGN KEY (`fac_dem_id`) REFERENCES `dades_personals_empresa` (`dem_id`),
+  ADD CONSTRAINT `factura_sub_id_fk` FOREIGN KEY (`fac_sub_id`) REFERENCES `subjecte` (`sub_id`);
 
 --
 -- Restriccions per la taula `factura_detall`
@@ -709,11 +775,18 @@ ALTER TABLE `subfamilia`
   ADD CONSTRAINT `subfamilia_fam_id_fk` FOREIGN KEY (`sfm_fam_id`) REFERENCES `familia` (`fam_id`);
 
 --
--- Restriccions per la taula `subjecte`
+-- Restriccions per la taula `subjecte_adreca`
 --
-ALTER TABLE `subjecte`
-  ADD CONSTRAINT `subjecte_adr_id_fk` FOREIGN KEY (`sub_adr_id_defecte`) REFERENCES `adreca` (`adr_id`),
-  ADD CONSTRAINT `subjecte_cat_id_fk` FOREIGN KEY (`sub_cat_id`) REFERENCES `categoria` (`cat_id`);
+ALTER TABLE `subjecte_adreca`
+  ADD CONSTRAINT `subjecte_adreca_sad_adr_id_fk` FOREIGN KEY (`sad_adr_id`) REFERENCES `adreca` (`adr_id`),
+  ADD CONSTRAINT `subjecte_adreca_sad_sub_id_fk` FOREIGN KEY (`sad_sub_id`) REFERENCES `subjecte` (`sub_id`);
+
+--
+-- Restriccions per la taula `subjecte_categoria`
+--
+ALTER TABLE `subjecte_categoria`
+  ADD CONSTRAINT `subjecte_categoria_cat_id_fk` FOREIGN KEY (`sbc_cat_id`) REFERENCES `categoria` (`cat_id`),
+  ADD CONSTRAINT `subjecte_categoria_sub_id_fk` FOREIGN KEY (`sbc_sub_id`) REFERENCES `subjecte` (`sub_id`);
 
 --
 -- Restriccions per la taula `tramesa`
@@ -722,10 +795,11 @@ ALTER TABLE `tramesa`
   ADD CONSTRAINT `tramesa_cmt_id_fk` FOREIGN KEY (`tra_cmt_id`) REFERENCES `comentari` (`cmt_id`);
 
 --
--- Restriccions per la taula `tramesa_email`
+-- Restriccions per la taula `tramesa_contacte`
 --
-ALTER TABLE `tramesa_email`
-  ADD CONSTRAINT `tramesa_email_tra_id_fk` FOREIGN KEY (`tem_tra_id`) REFERENCES `tramesa` (`tra_id`);
+ALTER TABLE `tramesa_contacte`
+  ADD CONSTRAINT `tramesa_contacte_con_id_fk` FOREIGN KEY (`tco_con_id`) REFERENCES `contacte` (`con_id`),
+  ADD CONSTRAINT `tramesa_contacte_tra_id_fk` FOREIGN KEY (`tco_tra_id`) REFERENCES `tramesa` (`tra_id`);
 
 --
 -- Restriccions per la taula `usuari_permis`
