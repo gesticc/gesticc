@@ -3,13 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-05-2014 a les 17:26:36
+-- Generation Time: 08-05-2014 a les 17:12:50
 -- Versió del servidor: 5.6.16
 -- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,17 +17,17 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `gesticc`
+-- Database: `gesticc2`
 --
-CREATE DATABASE IF NOT EXISTS `gesticc` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
-USE `gesticc`;
+CREATE DATABASE IF NOT EXISTS `gesticc2` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `gesticc2`;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de la taula `adreca`
 --
--- Creació: 06-05-2014 a les 17:17:45
+-- Creació: 07-05-2014 a les 15:28:47
 --
 
 DROP TABLE IF EXISTS `adreca`;
@@ -52,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `adreca` (
 --
 -- Estructura de la taula `adreca_contacte`
 --
--- Creació: 06-05-2014 a les 17:22:38
+-- Creació: 07-05-2014 a les 15:28:48
 --
 
 DROP TABLE IF EXISTS `adreca_contacte`;
@@ -78,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `adreca_contacte` (
 --
 -- Estructura de la taula `categoria`
 --
--- Creació: 29-04-2014 a les 18:23:08
+-- Creació: 07-05-2014 a les 15:28:48
 --
 
 DROP TABLE IF EXISTS `categoria`;
@@ -94,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 --
 -- Estructura de la taula `comarca`
 --
--- Creació: 30-04-2014 a les 14:52:12
+-- Creació: 07-05-2014 a les 15:28:49
 --
 
 DROP TABLE IF EXISTS `comarca`;
@@ -110,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `comarca` (
 --
 -- Estructura de la taula `comentari`
 --
--- Creació: 29-04-2014 a les 17:19:36
+-- Creació: 07-05-2014 a les 15:28:49
 --
 
 DROP TABLE IF EXISTS `comentari`;
@@ -125,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `comentari` (
 --
 -- Estructura de la taula `contacte`
 --
--- Creació: 06-05-2014 a les 17:21:17
+-- Creació: 07-05-2014 a les 15:28:50
 --
 
 DROP TABLE IF EXISTS `contacte`;
@@ -144,22 +142,22 @@ CREATE TABLE IF NOT EXISTS `contacte` (
 --
 -- Estructura de la taula `dades_personals_empresa`
 --
--- Creació: 07-05-2014 a les 15:25:06
+-- Creació: 07-05-2014 a les 15:28:50
 --
 
 DROP TABLE IF EXISTS `dades_personals_empresa`;
 CREATE TABLE IF NOT EXISTS `dades_personals_empresa` (
   `dem_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
-  `dem_nom` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom empresa personal',
-  `dem_nif` varchar(9) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'NIF empresa personal',
-  `dem_adreca` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Adreca empresa',
-  `dem_codi_postal` varchar(8) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Codi postal empresa',
-  `dem_poblacio` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Poblacio empresa',
-  `dem_provincia` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Provincia empresa',
-  `dem_pais` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Pais empresa',
-  `dem_mail` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Mail empresa',
-  `dem_telefon` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Telefon empresa',
-  `dem_fax` varchar(128) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Fax empresa',
+  `dem_nom` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom empresa personal',
+  `dem_nif` varchar(9) COLLATE utf8_spanish_ci NOT NULL COMMENT 'NIF empresa personal',
+  `dem_adreca` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Adreca empresa',
+  `dem_codi_postal` varchar(8) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Codi postal empresa',
+  `dem_poblacio` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Poblacio empresa',
+  `dem_provincia` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Provincia empresa',
+  `dem_pais` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Pais empresa',
+  `dem_mail` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Mail empresa',
+  `dem_telefon` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Telefon empresa',
+  `dem_fax` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Fax empresa',
   PRIMARY KEY (`dem_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula dades personals empresa' AUTO_INCREMENT=1 ;
 
@@ -168,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `dades_personals_empresa` (
 --
 -- Estructura de la taula `empresa`
 --
--- Creació: 30-04-2014 a les 15:19:02
+-- Creació: 07-05-2014 a les 15:28:51
 --
 
 DROP TABLE IF EXISTS `empresa`;
@@ -196,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `empresa` (
 --
 -- Estructura de la taula `factura`
 --
--- Creació: 06-05-2014 a les 17:27:12
+-- Creació: 07-05-2014 a les 15:28:52
 --
 
 DROP TABLE IF EXISTS `factura`;
@@ -230,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `factura` (
 --
 -- Estructura de la taula `factura_detall`
 --
--- Creació: 30-04-2014 a les 15:54:19
+-- Creació: 07-05-2014 a les 15:28:53
 --
 
 DROP TABLE IF EXISTS `factura_detall`;
@@ -256,23 +254,31 @@ CREATE TABLE IF NOT EXISTS `factura_detall` (
 --
 -- Estructura de la taula `familia`
 --
--- Creació: 29-04-2014 a les 18:22:07
+-- Creació: 07-05-2014 a les 17:32:49
 --
 
 DROP TABLE IF EXISTS `familia`;
 CREATE TABLE IF NOT EXISTS `familia` (
   `fam_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
   `fam_nom` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom familia',
+  `fam_id_pare` int(12) NOT NULL COMMENT 'Identificador de la familia a la que pertany la subfamilia actual',
   PRIMARY KEY (`fam_id`),
-  UNIQUE KEY `fam_nom` (`fam_nom`)
+  UNIQUE KEY `fam_nom` (`fam_nom`),
+  KEY `fam_id_pare` (`fam_id_pare`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula families' AUTO_INCREMENT=1 ;
+
+--
+-- RELACIONS DE LA TAULA `familia`:
+--   `fam_id_pare`
+--       `familia` -> `fam_id`
+--
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de la taula `marca`
 --
--- Creació: 29-04-2014 a les 18:25:03
+-- Creació: 07-05-2014 a les 15:28:54
 --
 
 DROP TABLE IF EXISTS `marca`;
@@ -288,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `marca` (
 --
 -- Estructura de la taula `pais`
 --
--- Creació: 30-04-2014 a les 14:51:55
+-- Creació: 07-05-2014 a les 15:28:55
 --
 
 DROP TABLE IF EXISTS `pais`;
@@ -304,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `pais` (
 --
 -- Estructura de la taula `permis`
 --
--- Creació: 29-04-2014 a les 18:22:47
+-- Creació: 07-05-2014 a les 15:28:55
 --
 
 DROP TABLE IF EXISTS `permis`;
@@ -321,7 +327,7 @@ CREATE TABLE IF NOT EXISTS `permis` (
 --
 -- Estructura de la taula `persona`
 --
--- Creació: 30-04-2014 a les 15:17:29
+-- Creació: 07-05-2014 a les 15:28:56
 --
 
 DROP TABLE IF EXISTS `persona`;
@@ -348,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `persona` (
 --
 -- Estructura de la taula `poblacio`
 --
--- Creació: 30-04-2014 a les 14:59:16
+-- Creació: 07-05-2014 a les 15:28:57
 --
 
 DROP TABLE IF EXISTS `poblacio`;
@@ -380,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `poblacio` (
 --
 -- Estructura de la taula `producte`
 --
--- Creació: 30-04-2014 a les 15:52:46
+-- Creació: 07-05-2014 a les 17:30:04
 --
 
 DROP TABLE IF EXISTS `producte`;
@@ -399,10 +405,10 @@ CREATE TABLE IF NOT EXISTS `producte` (
 
 --
 -- RELACIONS DE LA TAULA `producte`:
+--   `pro_sfm_id`
+--       `familia` -> `fam_id`
 --   `pro_mar_id`
 --       `marca` -> `mar_id`
---   `pro_sfm_id`
---       `subfamilia` -> `sfm_id`
 --
 
 -- --------------------------------------------------------
@@ -410,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `producte` (
 --
 -- Estructura de la taula `provincia`
 --
--- Creació: 30-04-2014 a les 14:52:42
+-- Creació: 07-05-2014 a les 15:28:59
 --
 
 DROP TABLE IF EXISTS `provincia`;
@@ -426,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `provincia` (
 --
 -- Estructura de la taula `rol`
 --
--- Creació: 29-04-2014 a les 18:22:37
+-- Creació: 07-05-2014 a les 15:28:59
 --
 
 DROP TABLE IF EXISTS `rol`;
@@ -443,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 -- Estructura de la taula `rol_permis`
 --
--- Creació: 30-04-2014 a les 15:51:08
+-- Creació: 07-05-2014 a les 15:29:00
 --
 
 DROP TABLE IF EXISTS `rol_permis`;
@@ -465,33 +471,9 @@ CREATE TABLE IF NOT EXISTS `rol_permis` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `subfamilia`
---
--- Creació: 30-04-2014 a les 15:53:39
---
-
-DROP TABLE IF EXISTS `subfamilia`;
-CREATE TABLE IF NOT EXISTS `subfamilia` (
-  `sfm_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
-  `sfm_nom` varchar(128) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom de la subfamilia',
-  `sfm_fam_id` int(12) NOT NULL COMMENT 'Familia a la que pertany',
-  PRIMARY KEY (`sfm_id`),
-  UNIQUE KEY `sfm_nom` (`sfm_nom`),
-  KEY `sfm_fam_id` (`sfm_fam_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `subfamilia`:
---   `sfm_fam_id`
---       `familia` -> `fam_id`
---
-
--- --------------------------------------------------------
-
---
 -- Estructura de la taula `subjecte`
 --
--- Creació: 07-05-2014 a les 13:35:46
+-- Creació: 07-05-2014 a les 15:29:02
 --
 
 DROP TABLE IF EXISTS `subjecte`;
@@ -509,7 +491,7 @@ CREATE TABLE IF NOT EXISTS `subjecte` (
 --
 -- Estructura de la taula `subjecte_adreca`
 --
--- Creació: 06-05-2014 a les 17:19:43
+-- Creació: 07-05-2014 a les 15:29:02
 --
 
 DROP TABLE IF EXISTS `subjecte_adreca`;
@@ -535,7 +517,7 @@ CREATE TABLE IF NOT EXISTS `subjecte_adreca` (
 --
 -- Estructura de la taula `subjecte_categoria`
 --
--- Creació: 02-05-2014 a les 17:34:29
+-- Creació: 07-05-2014 a les 15:29:03
 --
 
 DROP TABLE IF EXISTS `subjecte_categoria`;
@@ -562,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `subjecte_categoria` (
 --
 -- Estructura de la taula `tipus_factura`
 --
--- Creació: 06-05-2014 a les 17:24:57
+-- Creació: 07-05-2014 a les 15:29:04
 --
 
 DROP TABLE IF EXISTS `tipus_factura`;
@@ -577,7 +559,7 @@ CREATE TABLE IF NOT EXISTS `tipus_factura` (
 --
 -- Estructura de la taula `tramesa`
 --
--- Creació: 06-05-2014 a les 17:42:30
+-- Creació: 07-05-2014 a les 15:29:04
 --
 
 DROP TABLE IF EXISTS `tramesa`;
@@ -603,7 +585,7 @@ CREATE TABLE IF NOT EXISTS `tramesa` (
 --
 -- Estructura de la taula `tramesa_contacte`
 --
--- Creació: 06-05-2014 a les 17:43:52
+-- Creació: 07-05-2014 a les 15:29:04
 --
 
 DROP TABLE IF EXISTS `tramesa_contacte`;
@@ -629,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `tramesa_contacte` (
 --
 -- Estructura de la taula `usuari`
 --
--- Creació: 29-04-2014 a les 18:19:06
+-- Creació: 07-05-2014 a les 15:29:05
 --
 
 DROP TABLE IF EXISTS `usuari`;
@@ -649,7 +631,7 @@ CREATE TABLE IF NOT EXISTS `usuari` (
 --
 -- Estructura de la taula `usuari_permis`
 --
--- Creació: 30-04-2014 a les 15:47:00
+-- Creació: 07-05-2014 a les 15:29:06
 --
 
 DROP TABLE IF EXISTS `usuari_permis`;
@@ -673,7 +655,7 @@ CREATE TABLE IF NOT EXISTS `usuari_permis` (
 --
 -- Estructura de la taula `usuari_rol`
 --
--- Creació: 30-04-2014 a les 15:49:16
+-- Creació: 07-05-2014 a les 15:29:07
 --
 
 DROP TABLE IF EXISTS `usuari_rol`;
@@ -732,6 +714,12 @@ ALTER TABLE `factura_detall`
   ADD CONSTRAINT `factura_detall_pro_id_fk` FOREIGN KEY (`fad_pro_id`) REFERENCES `producte` (`pro_id`);
 
 --
+-- Restriccions per la taula `familia`
+--
+ALTER TABLE `familia`
+  ADD CONSTRAINT `familia_id_fk` FOREIGN KEY (`fam_id_pare`) REFERENCES `familia` (`fam_id`);
+
+--
 -- Restriccions per la taula `persona`
 --
 ALTER TABLE `persona`
@@ -750,8 +738,8 @@ ALTER TABLE `poblacio`
 -- Restriccions per la taula `producte`
 --
 ALTER TABLE `producte`
-  ADD CONSTRAINT `producte_mar_id_fk` FOREIGN KEY (`pro_mar_id`) REFERENCES `marca` (`mar_id`),
-  ADD CONSTRAINT `producte_sfm_id_fk` FOREIGN KEY (`pro_sfm_id`) REFERENCES `subfamilia` (`sfm_id`);
+  ADD CONSTRAINT `producte_fam_id_fk` FOREIGN KEY (`pro_sfm_id`) REFERENCES `familia` (`fam_id`),
+  ADD CONSTRAINT `producte_mar_id_fk` FOREIGN KEY (`pro_mar_id`) REFERENCES `marca` (`mar_id`);
 
 --
 -- Restriccions per la taula `rol_permis`
@@ -759,12 +747,6 @@ ALTER TABLE `producte`
 ALTER TABLE `rol_permis`
   ADD CONSTRAINT `rol_permis_prm_id_fk` FOREIGN KEY (`rpr_prm_id`) REFERENCES `permis` (`prm_id`),
   ADD CONSTRAINT `rol_permis_rol_id_fk` FOREIGN KEY (`rpr_rol_id`) REFERENCES `rol` (`rol_id`);
-
---
--- Restriccions per la taula `subfamilia`
---
-ALTER TABLE `subfamilia`
-  ADD CONSTRAINT `subfamilia_fam_id_fk` FOREIGN KEY (`sfm_fam_id`) REFERENCES `familia` (`fam_id`);
 
 --
 -- Restriccions per la taula `subjecte_adreca`
@@ -806,7 +788,6 @@ ALTER TABLE `usuari_permis`
 ALTER TABLE `usuari_rol`
   ADD CONSTRAINT `usuari_rol_rol_id_fk` FOREIGN KEY (`uro_rol_id`) REFERENCES `rol` (`rol_id`),
   ADD CONSTRAINT `usuari_rol_usu_id_fk` FOREIGN KEY (`uro_usu_id`) REFERENCES `usuari` (`usu_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
