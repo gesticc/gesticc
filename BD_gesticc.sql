@@ -3,11 +3,13 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-05-2014 a les 17:12:50
+-- Generation Time: 12-05-2014 a les 15:42:38
 -- Versió del servidor: 5.6.16
 -- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,7 +29,7 @@ USE `gesticc2`;
 --
 -- Estructura de la taula `adreca`
 --
--- Creació: 07-05-2014 a les 15:28:47
+-- Creació: 12-05-2014 a les 13:40:08
 --
 
 DROP TABLE IF EXISTS `adreca`;
@@ -35,40 +37,18 @@ CREATE TABLE IF NOT EXISTS `adreca` (
   `adr_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
   `adr_adreca` varchar(512) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom del carrer, poligon, placa... aixi com el numero associat',
   `adr_pob_id` int(12) NOT NULL COMMENT 'Poblacio',
+  `adr_sub_id` int(12) NOT NULL COMMENT 'Clau identificadora subjecte',
   PRIMARY KEY (`adr_id`),
-  KEY `adr_pob_id` (`adr_pob_id`)
+  KEY `adr_pob_id` (`adr_pob_id`),
+  KEY `adr_sub_id` (`adr_sub_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula d''adreces' AUTO_INCREMENT=1 ;
 
 --
 -- RELACIONS DE LA TAULA `adreca`:
+--   `adr_sub_id`
+--       `subjecte` -> `sub_id`
 --   `adr_pob_id`
 --       `poblacio` -> `pob_id`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de la taula `adreca_contacte`
---
--- Creació: 07-05-2014 a les 15:28:48
---
-
-DROP TABLE IF EXISTS `adreca_contacte`;
-CREATE TABLE IF NOT EXISTS `adreca_contacte` (
-  `aco_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
-  `aco_adr_id` int(12) NOT NULL COMMENT 'Clau identificadora adreca',
-  `aco_con_id` int(12) NOT NULL COMMENT 'Clau identificadora contacte',
-  PRIMARY KEY (`aco_id`),
-  KEY `aco_adr_id` (`aco_adr_id`),
-  KEY `aco_con_id` (`aco_con_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `adreca_contacte`:
---   `aco_con_id`
---       `contacte` -> `con_id`
---   `aco_adr_id`
---       `adreca` -> `adr_id`
 --
 
 -- --------------------------------------------------------
@@ -449,16 +429,18 @@ CREATE TABLE IF NOT EXISTS `rol` (
 --
 -- Estructura de la taula `rol_permis`
 --
--- Creació: 07-05-2014 a les 15:29:00
+-- Creació: 12-05-2014 a les 13:37:04
 --
 
 DROP TABLE IF EXISTS `rol_permis`;
 CREATE TABLE IF NOT EXISTS `rol_permis` (
+  `rpe_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Identificador rol-permis',
   `rpr_rol_id` int(12) NOT NULL,
   `rpr_prm_id` int(12) NOT NULL,
+  PRIMARY KEY (`rpe_id`),
   KEY `rpr_rol_id` (`rpr_rol_id`,`rpr_prm_id`),
   KEY `rpr_prm_id` (`rpr_prm_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula rol-permis';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula rol-permis' AUTO_INCREMENT=1 ;
 
 --
 -- RELACIONS DE LA TAULA `rol_permis`:
@@ -473,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `rol_permis` (
 --
 -- Estructura de la taula `subjecte`
 --
--- Creació: 07-05-2014 a les 15:29:02
+-- Creació: 12-05-2014 a les 13:15:32
 --
 
 DROP TABLE IF EXISTS `subjecte`;
@@ -482,35 +464,9 @@ CREATE TABLE IF NOT EXISTS `subjecte` (
   `sub_nif` varchar(9) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Numero d''''identificacio de la persona o empresa',
   `sub_nom` varchar(256) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom de la persona o empresa',
   `sub_data_baixa_mailing` date DEFAULT NULL COMMENT 'Data en que s''ha donat de baixa el mailing postal',
-  `sub_data_baixa_general` date NOT NULL COMMENT 'Data de baixa general',
+  `sub_data_baixa_general` date DEFAULT NULL COMMENT 'Data de baixa general',
   PRIMARY KEY (`sub_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de la taula `subjecte_adreca`
---
--- Creació: 07-05-2014 a les 15:29:02
---
-
-DROP TABLE IF EXISTS `subjecte_adreca`;
-CREATE TABLE IF NOT EXISTS `subjecte_adreca` (
-  `sad_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau primaria',
-  `sad_sub_id` int(12) NOT NULL COMMENT 'Clau identificadora subjecte',
-  `sad_adr_id` int(12) NOT NULL COMMENT 'Clau identificadora adreca',
-  PRIMARY KEY (`sad_id`),
-  KEY `sad_sub_id` (`sad_sub_id`),
-  KEY `sad_adr_id` (`sad_adr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
-
---
--- RELACIONS DE LA TAULA `subjecte_adreca`:
---   `sad_adr_id`
---       `adreca` -> `adr_id`
---   `sad_sub_id`
---       `subjecte` -> `sub_id`
---
 
 -- --------------------------------------------------------
 
@@ -611,67 +567,28 @@ CREATE TABLE IF NOT EXISTS `tramesa_contacte` (
 --
 -- Estructura de la taula `usuari`
 --
--- Creació: 07-05-2014 a les 15:29:05
+-- Creació: 12-05-2014 a les 13:33:43
 --
 
 DROP TABLE IF EXISTS `usuari`;
 CREATE TABLE IF NOT EXISTS `usuari` (
   `usu_id` int(12) NOT NULL AUTO_INCREMENT COMMENT 'Clau principal',
-  `usu_nom` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Nom usuari',
-  `usu_contrassenya` varchar(32) COLLATE utf8_spanish_ci DEFAULT NULL COMMENT 'Contrassenya usuari',
+  `usu_nom` varchar(32) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Nom usuari',
+  `usu_mail` varchar(256) COLLATE utf8_spanish_ci NOT NULL,
+  `usu_contrassenya` varchar(32) COLLATE utf8_spanish_ci NOT NULL COMMENT 'Contrassenya usuari',
   `usu_ultima_connexio` date DEFAULT NULL COMMENT 'Data última entrada de l''usuari',
   `usu_bloquejat` tinyint(1) DEFAULT NULL COMMENT 'Booleà usuari bloquejat',
+  `usu_rol_id` int(12) NOT NULL COMMENT 'Identificador rol',
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_nom` (`usu_nom`),
-  UNIQUE KEY `usu_nom_2` (`usu_nom`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula d''usuaris' AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Estructura de la taula `usuari_permis`
---
--- Creació: 07-05-2014 a les 15:29:06
---
-
-DROP TABLE IF EXISTS `usuari_permis`;
-CREATE TABLE IF NOT EXISTS `usuari_permis` (
-  `upr_usu_id` int(12) NOT NULL,
-  `upr_prm_id` int(12) NOT NULL,
-  KEY `upr_prm_id` (`upr_prm_id`),
-  KEY `upr_usr_id` (`upr_usu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula usuari-permis';
+  UNIQUE KEY `usu_nom_2` (`usu_nom`),
+  KEY `usu_rol_id` (`usu_rol_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula d''usuaris' AUTO_INCREMENT=2 ;
 
 --
--- RELACIONS DE LA TAULA `usuari_permis`:
---   `upr_prm_id`
---       `permis` -> `prm_id`
---   `upr_usu_id`
---       `usuari` -> `usu_id`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de la taula `usuari_rol`
---
--- Creació: 07-05-2014 a les 15:29:07
---
-
-DROP TABLE IF EXISTS `usuari_rol`;
-CREATE TABLE IF NOT EXISTS `usuari_rol` (
-  `uro_usu_id` int(12) NOT NULL,
-  `uro_rol_id` int(12) NOT NULL,
-  KEY `uro_usu_id` (`uro_usu_id`),
-  KEY `uro_rol_id` (`uro_rol_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci COMMENT='Taula usuari-rol';
-
---
--- RELACIONS DE LA TAULA `usuari_rol`:
---   `uro_rol_id`
+-- RELACIONS DE LA TAULA `usuari`:
+--   `usu_rol_id`
 --       `rol` -> `rol_id`
---   `uro_usu_id`
---       `usuari` -> `usu_id`
 --
 
 --
@@ -682,14 +599,8 @@ CREATE TABLE IF NOT EXISTS `usuari_rol` (
 -- Restriccions per la taula `adreca`
 --
 ALTER TABLE `adreca`
+  ADD CONSTRAINT `adreca_sub_id_fk` FOREIGN KEY (`adr_sub_id`) REFERENCES `subjecte` (`sub_id`),
   ADD CONSTRAINT `adreca_pob_id_fk` FOREIGN KEY (`adr_pob_id`) REFERENCES `poblacio` (`pob_id`);
-
---
--- Restriccions per la taula `adreca_contacte`
---
-ALTER TABLE `adreca_contacte`
-  ADD CONSTRAINT `adreca_contacte_con_id_fk` FOREIGN KEY (`aco_con_id`) REFERENCES `contacte` (`con_id`),
-  ADD CONSTRAINT `adreca_contacte_adr_id_fk` FOREIGN KEY (`aco_adr_id`) REFERENCES `adreca` (`adr_id`);
 
 --
 -- Restriccions per la taula `empresa`
@@ -749,13 +660,6 @@ ALTER TABLE `rol_permis`
   ADD CONSTRAINT `rol_permis_rol_id_fk` FOREIGN KEY (`rpr_rol_id`) REFERENCES `rol` (`rol_id`);
 
 --
--- Restriccions per la taula `subjecte_adreca`
---
-ALTER TABLE `subjecte_adreca`
-  ADD CONSTRAINT `subjecte_adreca_sad_adr_id_fk` FOREIGN KEY (`sad_adr_id`) REFERENCES `adreca` (`adr_id`),
-  ADD CONSTRAINT `subjecte_adreca_sad_sub_id_fk` FOREIGN KEY (`sad_sub_id`) REFERENCES `subjecte` (`sub_id`);
-
---
 -- Restriccions per la taula `subjecte_categoria`
 --
 ALTER TABLE `subjecte_categoria`
@@ -776,18 +680,11 @@ ALTER TABLE `tramesa_contacte`
   ADD CONSTRAINT `tramesa_contacte_tra_id_fk` FOREIGN KEY (`tco_tra_id`) REFERENCES `tramesa` (`tra_id`);
 
 --
--- Restriccions per la taula `usuari_permis`
+-- Restriccions per la taula `usuari`
 --
-ALTER TABLE `usuari_permis`
-  ADD CONSTRAINT `usuari_permis_prm_id_fk` FOREIGN KEY (`upr_prm_id`) REFERENCES `permis` (`prm_id`),
-  ADD CONSTRAINT `usuari_permis_usu_id_fk` FOREIGN KEY (`upr_usu_id`) REFERENCES `usuari` (`usu_id`);
-
---
--- Restriccions per la taula `usuari_rol`
---
-ALTER TABLE `usuari_rol`
-  ADD CONSTRAINT `usuari_rol_rol_id_fk` FOREIGN KEY (`uro_rol_id`) REFERENCES `rol` (`rol_id`),
-  ADD CONSTRAINT `usuari_rol_usu_id_fk` FOREIGN KEY (`uro_usu_id`) REFERENCES `usuari` (`usu_id`);
+ALTER TABLE `usuari`
+  ADD CONSTRAINT `usuari_rol_id_fk` FOREIGN KEY (`usu_rol_id`) REFERENCES `rol` (`rol_id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
