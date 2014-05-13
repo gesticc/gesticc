@@ -1,0 +1,155 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilManteniment.css">
+  <link rel="stylesheet" href="estilMantenimentProducte.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
+</head>
+<body onload="midesMantenimentProductes();" onresize='midesMantenimentProductes();'> 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+  <div id='contingut'>
+    <h2 class='titol'>Manteniment productes</h2>
+    <ul id="tabGeografic" class="nav nav-tabs">
+      <li class="active"><a href="#pro" data-toggle="tab">Producte</a></li>
+      <li><a href="#mar" data-toggle="tab">Marca</a></li>
+      <li><a href="#fam" data-toggle="tab">Familia</a></li>
+    </ul>
+    <div id="tabGeograficContingut" class="tab-content">
+      <div class="tab-pane fade in active" id="pro"><!--begin pro-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de poblacions</div>
+          <table class="table" id="llistaPoblacio">
+            <thead>
+            <tr>
+              <th id="proNomAmpl" class="columnaPro">Nom</th>
+              <th id="proMarcaNomAmpl" class="columnaMar">Marca</th>
+              <th id="proModelAmpl" class="columnaMar">Model</th>
+              <th id="proFamiliaNomAmpl" class="columnaFam">Familia</th>
+              <th id="proPreuAmpl" class="columnaMar">Preu</th>
+              <th id="proStockAmpl" class="columnaMar">Stock</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" class="entradaDadesManteniment" id="proNom">
+        <input type="text" class="entradaCercador" id="proMarcaNom">
+        <input type="text" class="entradaDadesManteniment" id="proModel">
+        <input type="text" class="entradaCercador" id="proFamiliaNom">
+        <input type="text" class="entradaDadesManteniment" id="proPreu">
+        <input type="text" class="entradaDadesManteniment deshabilitat" id="proStock" readonly>
+        <img class="columnaBotons" id="nouProducte" src="img/tic_gris.png">
+      </div><!--end pro-->
+
+      <div class="tab-pane fade" id="mar" onchange='mides();'><!--begin mar-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de marques</div>
+          <table class="table" id="llistaComarca">
+            <thead>
+            <tr>
+              <th id="marNomAmpl">Nom</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" id="marNom" class="entradaDadesManteniment">        
+        <img class="columnaBotons" id="novaMarca" src="img/tic_gris.png">  
+      </div><!--end mar-->
+
+      <div class="tab-pane fade" id="fam"><!--begin fam-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de famílies</div>
+          <table class="table" id="llistaProvincia">
+            <thead>
+            <tr>
+              <th id="famNomAmpl">Nom</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" id="famNom" class="entradaDadesManteniment">        
+        <img class="columnaBotons" id="novaFamilia" src="img/tic_gris.png">
+      </div><!--end fam-->
+
+    </div><!--end tabGeograficContingut-->
+  </div><!--end contingut-->
+</body>
+</html>

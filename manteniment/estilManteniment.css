@@ -11,27 +11,20 @@
   border-radius: 0 0 4px 4px;
   border-top-color: transparent;
 }
-
-td img{
-	margin-top: 1px;
-  	margin-left: 10px;
-  	width: 25px;
-}
 input img{
-	margin-top: 1px;
-  	margin-left: 10px;
-  	width: 25px;
+  margin-top: 1px;
+    margin-left: 10px;
+    width: 25px;
 }
 
-/*.columnaBotons img{
-  margin-top: 4px;
-  width: 20px;
-}*/
-
-img.columnaBotons{
+.columnaBotons img{
   margin-top: 1px;
   margin-left: 10px;
   width: 25px;
+}
+.columnaBotons{
+  width: 30px;
+  text-align: right;
 }
 .entradaCercador{
   background-color: #F4E48A;

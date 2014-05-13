@@ -1,0 +1,176 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilManteniment.css">
+  <link rel="stylesheet" href="estilMantenimentGeografic.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
+</head>
+<body onload='midesMantenimentGeografic();' onresize='midesMantenimentGeografic();'> 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+    <div id='contingut'>
+    <h2 class='titol'>Manteniment geogràfic</h2>
+    <ul id="tabGeografic" class="nav nav-tabs">
+      <li class="active"><a href="#pob" data-toggle="tab">Població</a></li>
+      <li><a href="#com" data-toggle="tab">Comarca</a></li>
+      <li><a href="#prv" data-toggle="tab">Provincia</a></li>
+      <li><a href="#pss" data-toggle="tab">País</a></li>
+    </ul>
+    <div id="tabGeograficContingut" class="tab-content">
+      <div class="tab-pane fade in active" id="pob"><!--begin pob-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de poblacions</div>
+          <table class="table" id="llistaPoblacio">
+            <thead>
+            <tr>
+              <th id="pobNomAmpl">Nom</th>
+              <th id="pobComNomAmpl">Comarca</th>
+              <th id="pobPrvNomAmpl">Província</th>
+              <th id="pobPssNomAmpl">País</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td>cccc</td>
+              <td>cccc</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" class="entradaDadesManteniment" id="pobNom">
+        <input type="text" class="entradaCercador" id="pobComNom">
+        <input type="text" class="entradaCercador" id="pobPrvNom">
+        <input type="text" class="entradaCercador" id="pobPssNom">
+        <img class="columnaBotons" id="novaPoblacio" src="img/tic_gris.png">
+      </div><!--end pob-->
+
+      <div class="tab-pane fade" id="com" onchange='mides();'><!--begin com-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de comarques</div>
+          <table class="table" id="llistaComarca">
+            <thead>
+            <tr>
+              <th id="comNomAmpl">Nom</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" id="comNom" class="entradaDadesManteniment">        
+        <img class="columnaBotons" id="novaComarca" src="img/tic_gris.png">  
+      </div><!--end com-->
+
+      <div class="tab-pane fade" id="prv"><!--begin prv-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de províncies</div>
+          <table class="table" id="llistaProvincia">
+            <thead>
+            <tr>
+              <th id="prvNomAmpl">Nom</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" id="prvNom" class="entradaDadesManteniment">        
+        <img class="columnaBotons" id="novaProvincia" src="img/tic_gris.png">
+      </div><!--end prv-->
+
+      <div class="tab-pane fade" id="pss"><!--begin pss-->
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de països</div>
+          <table class="table" id="llistaPais">
+            <thead>
+            <tr>
+              <th id="pssNomAmpl">Nom</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>
+        <input type="text" id="pssNom" class="entradaDadesManteniment">        
+        <img class="columnaBotons" id="novaPais" src="img/tic_gris.png">
+      </div><!--end pss-->
+    </div><!--end tabGeograficContingut-->
+  </div><!--end contingut-->
+  
+</body>
+</html>
