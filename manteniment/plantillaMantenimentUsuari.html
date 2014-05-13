@@ -1,0 +1,108 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilManteniment.css">
+	<link rel="stylesheet" href="estilMantenimentUsuari.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
+</head>
+<body onload='midesMantenimentUsuari();' onresize='midesMantenimentUsuari();'> 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+
+  <div id='contingut'><!--begin contingut-->
+    <h2 class='titol'>Manteniment usuaris</h2>
+        <div class="panel panel-default">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Llista d'usuaris</div>
+          <!-- Table -->
+          <table class="table" id="llistaComarca">
+            <thead>
+            <tr>
+              <th id="usuNomAmpl">Nom</th>
+              <th id="usuEmailAmpl">Email</th>
+              <th id="usuUltimaConnexioAmpl">Última connexió</th>
+              <th id="usuBloquejatAmpl">Bloquejat</th>
+              <th id="usuRolAmpl">Rol</th>
+              <th class="columnaBotons"></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td><input type="checkbox"></td>
+              <td>aaaa</td>
+              <td class="columnaBotons">
+                <img src="img/creu_gris.png">
+              </td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td><input type="checkbox"></td>
+              <td>aaaa</td>
+              <td class="columnaBotons">
+                <img src="img/creu_gris.png">
+              </td>
+            </tr>
+          </table>            
+        </div>
+        <input type="text" class="entradaDadesManteniment" id="usuNom">
+        <input type="text" class="entradaDadesManteniment" id="usuEmail">
+        <input type="text" class="entradaDadesManteniment deshabilitat" id="usuUltimaConnexio" readonly >
+        <input type="checkbox" id="usuBloquejat">
+        <input type="text" class="entradaCercador" id="usuRol">
+        <img class="columnaBotons" src="img/tic_gris.png" id="nouUsuari">
+  </div><!--end contingut-->
+</body>
+</html>

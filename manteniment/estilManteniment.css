@@ -1,0 +1,41 @@
+/********************************
+********************************
+          begin tabs
+*********************************
+********************************/
+#tabGeograficContingut, #tabSubjecteContingut, #tabUsuariContingut{
+  padding: 20px;
+  text-align: justify;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 0 0 4px 4px;
+  border-top-color: transparent;
+}
+
+td img{
+	margin-top: 1px;
+  	margin-left: 10px;
+  	width: 25px;
+}
+input img{
+	margin-top: 1px;
+  	margin-left: 10px;
+  	width: 25px;
+}
+
+/*.columnaBotons img{
+  margin-top: 4px;
+  width: 20px;
+}*/
+
+img.columnaBotons{
+  margin-top: 1px;
+  margin-left: 10px;
+  width: 25px;
+}
+.entradaCercador{
+  background-color: #F4E48A;
+}
+.entradaDadesManteniment{
+  margin-top: -10px;
+}
