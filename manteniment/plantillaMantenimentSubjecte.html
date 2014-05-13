@@ -1,0 +1,175 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilManteniment.css">
+	<link rel="stylesheet" href="estilMantenimentSubjecte.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
+  <script type="text/javascript">
+    function netejar(){
+      document.getElementById("subjecteId").value="";
+      document.getElementById("nomCercador").value="";
+      document.getElementById("subjecteNom").value="";
+      document.getElementById("subjecteNif").value="";
+      document.getElementById("personaCognoms").value="";
+      document.getElementById("empresaRaoSocial").value="";      
+      document.getElementById("comentari").value="";
+      document.getElementById("subjecteBaixaMail").checked=false;      
+      document.getElementById("subjecteBaixaGeneral").checked=false; 
+    }
+  </script>
+</head>
+<body onload='midesMantenimentSubjectes();' onresize='midesMantenimentSubjectes();' > 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>                
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+
+  <div id='contingut'><!--begin contingut-->
+    <h2 class='titol'>Manteniment subjectes</h2>
+    <div id="cercaSubjecte">
+      Subjecte  
+      <input type="text" class="entradaCercador cercaSubjecte" id="subjecteId">
+      <input type="text" class="dadesCercaSubjecte deshabilitat" id="nomCercador" readonly>
+    </div>
+
+    <ul id="tabSubjecte" class="nav nav-tabs">
+      <li class="active"><a href="#dadesPersonals" data-toggle="tab">Dades personals</a></li>
+      <li><a href="#contacte" data-toggle="tab">Contacte</a></li>
+    </ul>
+    <div id="tabSubjecteContingut" class="tab-content"><!--begin tabSubjecteContingut-->
+      <div class="tab-pane fade in active" id="dadesPersonals">
+        <table>
+          <tr>
+            <td>Nom </td>
+            <td class='inputTaulaDades'><input type="text" class="entradaDadesManteniment" id="subjecteNom"></td>
+            <td>NIF</td>
+            <td class='inputTaulaDades'><input type="text" class="entradaDadesManteniment" id="subjecteNif"></td>
+          </tr>
+          <tr>
+            <td>Cognoms</td>
+            <td class='inputTaulaDades'><input type="text" class="entradaDadesManteniment" id="personaCognoms"></td>
+            <td>Raó social </td>
+            <td class='inputTaulaDades'><input type="text" class="entradaDadesManteniment" id="empresaRaoSocial"></td>
+          </tr>
+          <tr>
+            <td colspan="2">No rebre email <input type="checkbox" id="subjecteBaixaMail"></td>
+            <td colspan="2">Baixa general del subjecte <input type="checkbox" id="subjecteBaixaGeneral"></td>
+          </tr>
+          <tr>
+            <td>Comentari</td>
+            <td colspan="3" class='inputTaulaDades'><input type="text" class="entradaDadesManteniment" id="comentari"></td>
+          </tr>
+        </table>
+        <br><br><br><br>
+        <input type="button" class="btn btn-primary" value="Desar" onclick="">
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="netejar()">
+      </div><!--end dadesPersonals-->
+
+      <div class="tab-pane fade" id="contacte">
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de províncies</div>
+          <table class="table" id="llistaProvincia">
+            <thead>
+            <tr>
+              <th id="adrAdrecaAmpl">Adreça</th>
+              <th id="adrPobNomAmpl">Població</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+            <tr>
+              <td>aaaa</td>
+              <td>bbbb</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>          
+        </div>
+        <input type="text" class="entradaDadesManteniment" id="adrAdreca"> 
+        <input type="text" class="entradaCercador" id="adrPobNom"> 
+        <img class="columnaBotons" src="img/tic_gris.png" id="nouContacte">
+        <br><br>
+        <div class="panel panel-default">
+          <div class="panel-heading">Llista de contactes</div>
+          <table class="table" id="llistaComarca">
+            <thead>
+            <tr>
+              <th id="conNomAmpl">Nom</th>
+              <th id="conTelefonAmpl">Telèfon</th>
+              <th id="conMobilAmpl">Mòbil</th>
+              <th id="conFaxAmpl">Fax</th>
+              <th id="conEmailAmpl">Email</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td>aaaa</td>
+              <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+            </tr>
+          </table>
+        </div>                
+        <input type="text" class="entradaDadesManteniment" id="conMobil">
+        <input type="text" class="entradaDadesManteniment" id="conNom"> 
+        <input type="text" class="entradaDadesManteniment" id="conTelefon">
+        <input type="text" class="entradaDadesManteniment" id="conFax">
+        <input type="text" class="entradaDadesManteniment" id="conEmail"> 
+        <img class="columnaBotons" src="img/tic_gris.png" id="nouContacte">
+      </div><!--end contacte-->
+    </div><!--end tabSubjecteContingut-->
+  </div><!--end contingut-->
+</body>
+</html>

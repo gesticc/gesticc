@@ -130,11 +130,20 @@ br.separacio{
 
 /********************************
 *********************************
-          begin inputs
+          begin inputs, img
 *********************************
 ********************************/
 input.deshabilitat{
   background-color: #C0C0C0;
+}
+.columnaBotons img{
+  margin-top: 1px;
+  margin-left: 10px;
+  width: 25px;
+}
+.columnaBotons{
+  width: 30px;
+  text-align: right;
 }
 /********************************
 *********************************

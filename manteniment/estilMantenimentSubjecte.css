@@ -1,0 +1,29 @@
+.cercaSubjecte{
+	width: 70px;
+	margin-left: 10px;
+}
+.dadesCercaSubjecte{
+	width: 280px;
+}
+#tabSubjecte{
+	margin-top: 10px;
+}
+table td{
+	padding-right: 15px;
+	height: 40px;
+}
+table td.inputTaulaDades, input.entradaDadesManteniment{
+	width: 220px;
+}
+/***********************
+************************
+        begin linies
+************************
+***********************/
+
+
+/***********************
+************************
+        end linies
+************************
+***********************/
