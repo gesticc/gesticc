@@ -12,19 +12,6 @@
 	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
   <script src="funcions.js"></script>
-  <script type="text/javascript">
-    function netejar(){
-      document.getElementById("subjecteId").value="";
-      document.getElementById("nomCercador").value="";
-      document.getElementById("subjecteNom").value="";
-      document.getElementById("subjecteNif").value="";
-      document.getElementById("personaCognoms").value="";
-      document.getElementById("empresaRaoSocial").value="";      
-      document.getElementById("comentari").value="";
-      document.getElementById("subjecteBaixaMail").checked=false;      
-      document.getElementById("subjecteBaixaGeneral").checked=false; 
-    }
-  </script>
 </head>
 <body onload='midesMantenimentSubjectes();' onresize='midesMantenimentSubjectes();' > 
   <div id='menu'>
@@ -109,7 +96,7 @@
         </table>
         <br><br><br><br>
         <input type="button" class="btn btn-primary" value="Desar" onclick="">
-        <input type="button" class="btn btn-primary" value="Cancelar" onclick="netejar()">
+        <input type="button" class="btn btn-primary" value="Cancelar" onclick="netejarMantenimentSubjectes()">
       </div><!--end dadesPersonals-->
 
       <div class="tab-pane fade" id="contacte">

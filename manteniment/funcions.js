@@ -128,6 +128,32 @@ function netejarConsultaTrameses(){
       document.getElementById("traDataInici").value = "";
       document.getElementById("traDataFi").value = "";
 }
+function midesTramesaNova(){
+      var ampladaCol1 = document.getElementsByTagName("th")["comNomAmpl"].offsetWidth;
+      document.getElementById('comNom').style.width = (ampladaCol1)+"px";
+
+      var ampladaCol2 = document.getElementsByTagName("th")["prvNomAmpl"].offsetWidth;
+      document.getElementById('prvNom').style.width = (ampladaCol2)+"px";
+      
+      var ampladaCol3 = document.getElementsByTagName("th")["catNomAmpl"].offsetWidth;
+      document.getElementById('catNom').style.width = (ampladaCol3)+"px";
+      
+      var ampladaCol4 = document.getElementsByTagName("th")["subNomAmpl"].offsetWidth;
+      var ampladaCol5 = document.getElementsByTagName("th")["conMailAmpl"].offsetWidth;
+      document.getElementById('subNom').style.width = (ampladaCol4-2)+"px";
+      document.getElementById('conMail').style.width = (ampladaCol5-2)+"px";
+}
+function obtenirTextCKeditor(){
+      var titol = document.getElementById("traTitol").value;
+      var comentari = document.getElementById("traComentari").value;
+      var assumpte = document.getElementById("traAssumpte").value;
+      var contingut = document.getElementById("editor").value;
+      var total = "Titol: " + titol +"\nComentari: "+comentari+"\nAssumpte: "+assumpte+"\nConingut: "+contingut;
+      alert(total);
+}
+function tramesaEnviamentPas2(){
+      location.href="plantillaTramesaNovaEnviar.html";
+}
 /*************************************
             end trameses
 *************************************/

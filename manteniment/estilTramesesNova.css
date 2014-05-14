@@ -1,0 +1,43 @@
+.comarca, .provincia, .categoria{
+	width: 30%;
+	display: inline-table;
+}
+.provincia{
+	margin-left: 5%;
+}
+.categoria{
+	float: right;
+}
+.subjecte{
+	margin-top: 25px;
+}
+.comarca input, .provincia input, .categoria input, .subjecte input{
+	margin-top: -5px;
+	margin-left: 5px;
+}
+.botons{
+	margin-top: 10px;
+	text-align: right;
+}
+td{
+	height: 40px;
+}
+#campsDadesTramesa td:first-child{
+	min-width: 120px;
+	width: 120px;
+}
+#campsDadesTramesa td:last-child{
+	width: 100%;
+}
+#campsDadesTramesa td input{
+	width: 80%;
+}
+#dadesTramesa{
+	width: 100%;
+  	border-radius: 5px;
+  	border: 1px solid #C0C0C0;
+  	background-color: #E9E9E9;
+  	padding-top: 20px;
+  	padding-left: 10px;
+  	margin-bottom: 10px;
+}

@@ -1,0 +1,166 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilTrameses.css">
+  <link rel="stylesheet" href="estilTramesesNova.css">
+  <script src="funcions.js"></script>
+  <script src="jquery/js/jquery.min.js"></script>
+  <script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body onload='midesTramesaNova();' onresize='midesTramesaNova();'> 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+
+  <div id='contingut'><!--begin contingut-->
+    <h2 class='titol'>Nova tramesa</h2>
+    <p>- Primer pas: filtrar tots els subjectes al que li volem enviar la tramesa</p>
+    <div class="comarca">
+      <div class="panel panel-default">
+        <div class="panel-heading">Llista comarques</div>
+        <table class="table" id="llistaComarca">
+          <thead>
+          <tr>
+            <th id="comNomAmpl">Nom</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+        </table>            
+      </div>
+      <input type="text" class="entradaCercador" id="comNom">
+      <img class="columnaBotons" id="novaComarca" src="img/tic_gris.png">
+    </div>
+    <div class="provincia">
+      <div class="panel panel-default">
+        <div class="panel-heading">Llista provincies</div>
+        <table class="table" id="llistaComarca">
+          <thead>
+          <tr>
+            <th id="prvNomAmpl">Data</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+        </table>     
+      </div>
+      <input type="text" class="entradaCercador" id="prvNom">
+      <img class="columnaBotons" id="novaProvincia" src="img/tic_gris.png">
+    </div>
+    <div class="categoria">
+      <div class="panel panel-default">
+        <div class="panel-heading">Llista categories</div>
+        <table class="table" id="llistaComarca">
+          <thead>
+          <tr>
+            <th id="catNomAmpl">Data</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+          <tr>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+        </table>            
+      </div>
+      <input type="text" class="entradaCercador" id="catNom">
+      <img class="columnaBotons" id="novaCategoria" src="img/tic_gris.png">
+    </div>
+    <div class="subjecte">
+      <div class="panel panel-default">
+        <div class="panel-heading">Llista subjectes</div>
+        <table class="table" id="llistaComarca">
+          <thead>
+          <tr>
+            <th id="subNomAmpl">Nom</th>
+            <th id="conMailAmpl">Correu</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tr>
+            <td>aaaa</td>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+          <tr>
+            <td>aaaa</td>
+            <td>aaaa</td>
+            <td class="columnaBotons"><img src="img/creu_blava.png"></td>
+          </tr>
+        </table>            
+      </div>
+      <input type="text" class="entradaCercador" id="subNom">
+      <input type="text" class="entradaCercador" id="conMail">
+      <img class="columnaBotons" id="novaContacte" src="img/tic_gris.png">
+    </div>
+    <br>
+    <div class="botons">
+      <input type="button" class="btn btn-primary" value="Següent" onclick="tramesaEnviamentPas2()">
+    </div>
+  </div><!--end contingut-->
+</body>
+</html>
