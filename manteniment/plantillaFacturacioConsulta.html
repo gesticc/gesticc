@@ -1,0 +1,114 @@
+<html>
+<head>
+	<title></title>
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilFacturacio.css">
+  <link rel="stylesheet" href="estilFacturacioConsulta.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
+</head>
+<body onload='midesFacturacioConsulta();' onresize='midesFacturacioConsulta();'> 
+  <div id='menu'>
+    <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-example-js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Gesticc-Web</a>
+        </div>
+        <div class="collapse navbar-collapse bs-example-js-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a id="drop1" href="" role="button" class="dropdown-toggle" data-toggle="dropdown">Manteniment <b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentProducte.html">Productes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentGeografic.html">Geogràfics</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentSubjecte.html">Subjectes</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="plantillaMantenimentUsuari.html">Usuaris</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop2" role="button" class="dropdown-toggle" data-toggle="dropdown">Facturació<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Entrada</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Sortida</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown">Trameses<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="drop2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nova tramesa</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Visualitzar</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div><!--end menu-->
+
+  <div id='contingut'><!--begin contingut-->
+    <h2 class='titol'>Consulta factures</h2>
+    <div id="cercaFactura">
+      Subjecte  
+      <input type="text" class="entradaCercador cercaSubjecte" id="subjecteId">
+      <input type="text" class="dadesCercaSubjecte deshabilitat" id="nomCercador" readonly>
+      <br>
+      Tipus
+      <select class="form-control input-sm selectTipus" id="tipusFactura">
+        <option value="0"></option>
+        <option value="1">Compra</option>
+        <option value="2">Venta</option>
+      </select>      
+      <input type="button" class="btn btn-primary btn-netejar" value="Netejar" onclick="netejarConsultaFactures();">
+      <br>
+      Data inici <input type="date" class="entradaData" id="facDataInici">
+      Data fi <input type="date" class="entradaData" id="facDataFi">
+      <input type="button" class="btn btn-primary btn-filtrar" value="Filtrar">
+      <br><br>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">Llista de facures</div>
+      <table class="table" id="llistaComarca">
+        <thead>
+        <tr>
+          <th id="facDataAmpl">Data</th>
+          <th id="facSubjecteAmpl">Subjecte</th>
+          <th id="facPreuTotalAmpl">Preu total</th>
+          <th id="facPagatAmpl" class="bloquejat">Pagat</th>
+          <th id="facTipusFacturaAmpl">Tipus factura</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tr>
+          <td>aaaa</td>
+          <td>aaaa</td>
+          <td>aaaa</td>
+          <td class="pagat"><input type="checkbox"></td>
+          <td>aaaa</td>
+          <td class="columnaBotons"><img src="img/lupa_blau.png"></td>
+        </tr>
+        <tr>
+          <td>aaaa</td>
+          <td>aaaa</td>
+          <td>aaaa</td>
+          <td class="pagat"><input type="checkbox"></td>
+          <td>aaaa</td>
+          <td class="columnaBotons"><img src="img/lupa_blau.png"></td>
+        </tr>
+      </table>            
+    </div>
+  </div><!--end contingut-->
+</body>
+</html>

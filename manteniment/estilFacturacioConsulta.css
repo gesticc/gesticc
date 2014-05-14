@@ -1,0 +1,37 @@
+.cercaSubjecte{
+  width: 70px;
+  margin-left: 10px;
+}
+.dadesCercaSubjecte{
+  width: 280px;
+}
+.selectTipus{
+  width: 200px;
+  display: inline-table;
+  margin-left: 39px;
+  margin-top: 10px;
+}
+input.entradaData{
+  height: 30px;
+  margin-top: 8px;
+  margin-left: 6px;
+  margin-right: 15px;
+  width: 160px;
+}
+input.btn-filtrar{
+  margin-top: -8px;
+  width: 80px;
+}
+input.btn-netejar{
+  width: 80px;
+  margin-left: 210px;
+}
+#cercaFactura{
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #C0C0C0;
+  background-color: #E9E9E9;
+  padding-top: 20px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}

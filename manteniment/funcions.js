@@ -1,12 +1,9 @@
-window.onresize = function midaContingut(event){
+window.onresize = midaContingut;
+window.onload = midaContingut;
+function midaContingut(event){
       var alcadaMenu = document.getElementsByTagName("div")["menu"].offsetHeight;
       var alcadaPantalla = window.innerHeight;
-      document.getElementById("contingut").style.height = (alcadaPantalla - alcadaMenu - 100) + "px";
-}
-window.onload = function midaContingut2(event){
-      var alcadaMenu = document.getElementsByTagName("div")["menu"].offsetHeight;
-      var alcadaPantalla = window.innerHeight;
-      document.getElementById("contingut").style.height = (alcadaPantalla - alcadaMenu - 100) + "px";
+      //document.getElementById("contingut").style.height = (alcadaPantalla - alcadaMenu - 100) + "px";
 }
 
 /*************************************
@@ -81,35 +78,56 @@ function midesMantenimentSubjectes(){
       document.getElementById('adrAdreca').style.width = (ampladaCol6-2)+"px";
       document.getElementById('adrPobNom').style.width = (ampladaCol7-2)+"px";
 }
+function netejarMantenimentSubjectes(){
+      document.getElementById("subjecteId").value="";
+      document.getElementById("nomCercador").value="";
+      document.getElementById("subjecteNom").value="";
+      document.getElementById("subjecteNif").value="";
+      document.getElementById("personaCognoms").value="";
+      document.getElementById("empresaRaoSocial").value="";      
+      document.getElementById("comentari").value="";
+      document.getElementById("subjecteBaixaMail").checked=false;      
+      document.getElementById("subjecteBaixaGeneral").checked=false;    
+}
+
 function modificarPoblacio(){
 
 }
 function modificarComarca(){
-
 }
 function modificarProvincia(){
-
 }
 function modificarPais(){
-
 }
 
 /*************************************
             end manteniment
 *************************************/
 
-
-
-
-
 /*************************************
             begin facturacio
 *************************************/
-
-function midesFacturacioConsulta(){
-
+function netejarConsultaFactures(){
+      document.getElementById("subjecteId").value = "";      
+      document.getElementById("nomCercador").value = "";     
+      document.getElementById("tipusFactura").value = "";
+      document.getElementById("facDataInici").value = "";
+      document.getElementById("facDataFi").value = "";
 }
-
 /*************************************
             end facturacio
+*************************************/
+
+/*************************************
+            begin trameses
+*************************************/
+function netejarConsultaTrameses(){
+      document.getElementById("traTitol").value = "";
+      document.getElementById("subjecteId").value = "";      
+      document.getElementById("nomCercador").value = "";     
+      document.getElementById("traDataInici").value = "";
+      document.getElementById("traDataFi").value = "";
+}
+/*************************************
+            end trameses
 *************************************/
