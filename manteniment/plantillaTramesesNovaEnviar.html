@@ -2,15 +2,17 @@
 <head>
 	<title></title>
 	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
-  <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
-  
-  <link rel="stylesheet" href="estilPerfilUsuari.css">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilTrameses.css">
+  <link rel="stylesheet" href="estilTramesesNova.css">
 	<script src="jquery/js/jquery.min.js"></script>
 	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="ck/ckeditor.js"></script>
+  <script src="funcions.js"></script>
 </head>
 <body> 
   <div id='menu'>
@@ -58,26 +60,37 @@
   </div><!--end menu-->
 
   <div id='contingut'><!--begin contingut-->
-    <h2 class='titol'>Canviar contrasenya</h2>
-
-    <div id="cercaSubjecte">
-      <table>
+    <h2 class='titol'>Nova tramesa</h2>
+    <div id="dadesTramesa">
+      <p>- Pas 2: Entrar les dades de la tramesa i enviar</p>
+      <table id="campsDadesTramesa">
         <tr>
-          <td>Contrasenya actual</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaAntiga"><br></td>
+          <td>Titol tramesa</td>
+          <td><input type="text" class="entradaDades" id="traTitol"></td>
         </tr>
         <tr>
-          <td>Nova contrasenya</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaNova"></td>
+          <td>Comentari</td>
+          <td><input type="text" class="entradaDades" id="traComentari"></td>
         </tr>
         <tr>
-          <td>Repetir contrasenya</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaRepetida"></td>
+          <td>Assumpte</td>
+          <td><input type="text" class="entradaDades" id="traAssumpte"></td>
         </tr>
       </table>
-       <br>
-      <input type="button" class="btn btn-primary" value="Desar">
+      <br>
     </div>
+    <div style="width: 100%">
+      <textarea name="editor" id="editor">
+        <p><strong>Escriu aquí tot el contingut de la tramesa...</strong></p>
+      </textarea>
+    </div>
+    <script type="text/javascript">
+      CKEDITOR.replace('editor');
+    </script>
+    <div class="botons">
+      <input type="button" class="btn btn-primary" value="Enviar" onclick="obtenirTextCKeditor();">
+    </div>
+    
   </div><!--end contingut-->
 </body>
 </html>

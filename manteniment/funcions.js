@@ -91,7 +91,6 @@ function netejarMantenimentSubjectes(){
 }
 
 function modificarPoblacio(){
-
 }
 function modificarComarca(){
 }
@@ -113,6 +112,20 @@ function netejarConsultaFactures(){
       document.getElementById("tipusFactura").value = "";
       document.getElementById("facDataInici").value = "";
       document.getElementById("facDataFi").value = "";
+}
+function midesNovaFactura(){
+      var ampladaCol4 = document.getElementsByTagName("th")["proFamiliaNomAmpl"].offsetWidth;
+      var ampladaCol3 = document.getElementsByTagName("th")["proSubfamiliaNomAmpl"].offsetWidth;
+      var ampladaCol2 = document.getElementsByTagName("th")["proMarcaNomAmpl"].offsetWidth;
+      var ampladaCol1 = document.getElementsByTagName("th")["proNomAmpl"].offsetWidth;
+      var ampladaCol5 = document.getElementsByTagName("th")["proPreuAmpl"].offsetWidth;
+      var ampladaCol6 = document.getElementsByTagName("th")["proStockAmpl"].offsetWidth;
+      document.getElementById('proFamiliaNom').style.width = (ampladaCol4-2)+"px";      
+      document.getElementById('proSubfamiliaNom').style.width = (ampladaCol3-2)+"px";
+      document.getElementById('proMarcaNom').style.width = (ampladaCol2-2)+"px";
+      document.getElementById('proNom').style.width = (ampladaCol1-2)+"px";
+      document.getElementById('proPreu').style.width = (ampladaCol5-2)+"px";
+      document.getElementById('proStock').style.width = (ampladaCol6-2)+"px";
 }
 /*************************************
             end facturacio
@@ -152,7 +165,7 @@ function obtenirTextCKeditor(){
       alert(total);
 }
 function tramesaEnviamentPas2(){
-      location.href="plantillaTramesaNovaEnviar.html";
+      location.href="plantillaTramesesNovaEnviar.html";
 }
 /*************************************
             end trameses

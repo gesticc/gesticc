@@ -2,17 +2,21 @@
 <head>
 	<title></title>
 	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
-  <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
-  
-  <link rel="stylesheet" href="estilPerfilUsuari.css">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="estilGeneral.css">
+	<link rel="stylesheet" href="estilGeneral.css">
+  <link rel="stylesheet" href="estilFacturacio.css">
+  <link rel="stylesheet" href="estilFacturacioNova.css">
 	<script src="jquery/js/jquery.min.js"></script>
 	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="funcions.js"></script>
 </head>
-<body> 
+<body onload="midesNovaFactura();" onresize='midesNovaFactura();'> 
+  <div id="capcalera">
+    <div><span id="usuari">usuari1asdasdasdas<img src="img/logout_blau.png"></span></div>
+  </div>
   <div id='menu'>
     <nav id="navbar-example" class="navbar navbar-default navbar-static" role="navigation">
       <div class="container-fluid">
@@ -56,28 +60,75 @@
       </div><!-- /.container-fluid -->
     </nav>
   </div><!--end menu-->
-
-  <div id='contingut'><!--begin contingut-->
-    <h2 class='titol'>Canviar contrasenya</h2>
-
-    <div id="cercaSubjecte">
+  <div id='contingut'>
+    <h2 class='titol'>Nova factura</h2>
+    <div id="entradaClient">
       <table>
         <tr>
-          <td>Contrasenya actual</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaAntiga"><br></td>
+          <td>Client</td>
+          <td>
+            <input type="text" class="entradaCercador cercaSubjecte" id="clientId">
+            <input type="text" class="dadesCercaSubjecte deshabilitat" id="clientCercador" readonly>
+          </td>
         </tr>
         <tr>
-          <td>Nova contrasenya</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaNova"></td>
-        </tr>
-        <tr>
-          <td>Repetir contrasenya</td>
-          <td><input type="password" class="inputContrasenya" id="contrasenyaRepetida"></td>
+          <td>Empresa</td>
+          <td>
+            <input type="text" class="entradaCercador cercaSubjecte" id="empPerId">
+            <input type="text" class="dadesCercaSubjecte deshabilitat" id="empPerCercador" readonly>
+          </td>
         </tr>
       </table>
-       <br>
-      <input type="button" class="btn btn-primary" value="Desar">
+      <br>
     </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">Llista de productes</div>
+      <table class="table entradaProductesFactura" id="llistaPoblacio">
+        <thead>
+        <tr>
+          <th id="proFamiliaNomAmpl">Familia</th>          
+          <th id="proSubfamiliaNomAmpl">Subfamilia</th>
+          <th id="proMarcaNomAmpl">Marca</th>
+          <th id="proNomAmpl">Nom</th>
+          <th id="proPreuAmpl">Preu</th>
+          <th id="proStockAmpl">Quant.</th>
+          <th class="columnaBotons"></th>
+        </tr>
+        </thead>
+        <tr>
+          <td>aaaa</td>
+          <td>bbbb</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+        </tr>
+        <tr>
+          <td>aaaa</td>
+          <td>bbbb</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td>cccc</td>
+          <td class="columnaBotons"><img src="img/creu_gris.png"></td>
+        </tr>
+      </table>
+    </div>
+    <input type="text" class="entradaCercador" id="proFamiliaNom">
+    <select id="proSubfamiliaNom">
+      <option></option>
+    </select>
+    <select id="proMarcaNom">
+      <option></option>
+    </select>
+    <select id="proNom">
+      <option></option>
+    </select>
+    <input type="text" class="deshabilitat" id="proPreu" readonly>
+    <input type="number" class="entradaDadesManteniment" id="proStock">
+    <img class="columnaBotons" id="nouProducte" src="img/tic_gris.png">    
   </div><!--end contingut-->
 </body>
 </html>

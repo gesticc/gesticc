@@ -1,0 +1,103 @@
+<html>
+<head>
+	<title></title>	
+	<meta HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
+    <meta HTTP-EQUIV="Content-Language" CONTENT="ca-ES">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="estilLogin.css">
+	<script src="jquery/js/jquery.min.js"></script>
+	<script src="jquery/js/jquery-ui-1.10.4.custom.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		/*$(function(){
+    
+			// Checking for CSS 3D transformation support
+			$.support.css3d = supportsCSS3D();
+			
+			var formContainer = $('#formContainer');
+			
+			// Listening for clicks on the ribbon links
+			$('.flipLink').click(function(e){
+				
+				// Flipping the forms
+				formContainer.toggleClass('flipped');
+				
+				// If there is no CSS3 3D support, simply
+				// hide the login form (exposing the recover one)
+				if(!$.support.css3d){
+					$('#login').toggle();
+				}
+				e.preventDefault();
+			});
+			
+			formContainer.find('form').submit(function(e){
+				// Preventing form submissions. If you implement
+				// a backend, you might want to remove this code
+				e.preventDefault();
+			});
+			
+			
+			// A helper function that checks for the 
+			// support of the 3D CSS3 transformations.
+			function supportsCSS3D() {
+				var props = [
+					'perspectiveProperty', 'WebkitPerspective', 'MozPerspective'
+				], testDom = document.createElement('a');
+				  
+				for(var i=0; i<props.length; i++){
+					if(props[i] in testDom.style){
+						return true;
+					}
+				}				
+				return false;
+			}
+		});*/
+		//$('#myModal').modal(options)
+	</script>
+</head>
+<body>
+	<!--begin formulari login-->
+	<div id="contenidor">
+		<form>
+			<h3 class="form-login-header">Entrar a Gesticc-Web</h3>
+			<div class="form-group">
+			    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrar usuari">
+			</div>
+			<div class="form-group">
+			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contrasenya">
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Entrar</button>
+		</form>
+		<button class="btn btn-link btn-recuperar" data-toggle="modal" data-target="#recuperarContrasenya">Recuperar contrasenya</button>
+	</div>
+	<!--end formulari login-->
+	<!--begin formulari recuperació de contrasenya-->
+	<div class="modal fade" id="recuperarContrasenya" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content finestraRecuperar">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Recuperar contrasenya</h4>
+	      </div>
+	      <div class="modal-body">
+	        Entra el teu nom d'usuari i el correu electrònic i se rebràs un correu amb la teva nova contrasenya      
+	      </div>
+	      <div class="modal-footer">
+	      	<form>
+				<div class="form-group">
+				    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Entrar usuari">
+				</div>
+				<div class="form-group">
+				    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Entre correu electrònic">
+				</div>
+				<button type="submit" class="btn btn-default">Enviar</button>
+			</form>	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!--end recuperació de contrasenya-->
+</body>
+</html>

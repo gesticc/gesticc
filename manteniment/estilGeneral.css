@@ -100,13 +100,32 @@ body {
           begin COS
 *********************************
 ********************************/
+
 br.separacio{
   line-height: 5px;
 }
-#menu, #contingut{
+#menu, #contingut, #capcalera{
   width: 90%;
   min-width: 670px;
   margin: auto;
+}
+#capcalera{
+  text-align: right;
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+#capcalera img{
+  margin-top: -4px;
+  margin-left: 10px;
+  margin-right: -5px;
+  width: 15px;
+}
+#usuari{
+  padding: 5px 20px;
+  background-color: #E6EBEC;
+  box-shadow:  0 1px 5px rgba(0,0,0,0.6);
+  text-align: right;
+  border-radius: 0 0 4px 30px;
 }
 #menu{
   margin-top: 0px;
